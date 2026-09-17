@@ -26,13 +26,13 @@
 
     <!-- Main Chat Container -->
     <main class="max-w-4xl w-full mx-auto px-4 py-6 flex-1 flex flex-col">
-        <div id="chat-box" class="bg-white rounded-2xl shadow-sm border border-slate-200 flex-1 p-4 sm:p-6 mb-4 overflow-y-auto space-y-4 h-[65vh]">
+        <div id="chat-box" class="bg-white rounded-2xl shadow-sm border border-slate-200 flex-1 p-4 sm:p-6 mb-4 overflow-y-auto space-y-4 h-[63vh]">
             <!-- Welcome Message -->
             <div class="flex items-start space-x-3">
                 <div class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shrink-0">AI</div>
                 <div class="bg-slate-100 rounded-2xl p-4 text-slate-800 text-sm sm:text-base max-w-[85%] leading-relaxed">
                     <p class="font-semibold text-blue-900 mb-1">안녕하십니까! 제주대학교 해양과학대학 규정 AI 어시스턴트입니다.</p>
-                    <p>책임시수, 학장 보직자 예외, 승진·재임용, 원격수업, 성적 처리, 복무·휴가, 출장 및 예산 집행에 대해 질문해 주시면 정확한 근거 조항과 함께 안내해 드립니다.</p>
+                    <p>책임시수, 보직자 감면, 승진·재임용, 원격수업, 성적 처리, 복무·휴가, 출장 및 예산 집행에 대해 질문해 주시면 정확한 근거 조항과 함께 안내해 드립니다.</p>
                 </div>
             </div>
         </div>
@@ -40,10 +40,11 @@
         <!-- Quick Suggestions -->
         <div class="mb-3 flex overflow-x-auto pb-2 space-x-2 scrollbar-none">
             <button onclick="sendQuickQuery('주당 강의 책임시간과 대면 강의 조건이 어떻게 되나요?')" class="bg-white border border-slate-300 text-slate-700 text-xs px-3 py-1.5 rounded-full whitespace-nowrap hover:bg-slate-50 transition">📚 책임시수 및 전공대면</button>
-            <button onclick="sendQuickQuery('보직자(학장 등)나 감면 대상자도 책임시수가 동일한가요?')" class="bg-white border border-slate-300 text-slate-700 text-xs px-3 py-1.5 rounded-full whitespace-nowrap hover:bg-slate-50 transition">⚖️ 보직자 및 책임시수 감면</button>
+            <button onclick="sendQuickQuery('학장 보직자나 보직 수행 시 책임시수 감면 기준은?')" class="bg-white border border-slate-300 text-slate-700 text-xs px-3 py-1.5 rounded-full whitespace-nowrap hover:bg-slate-50 transition">⚖️ 보직자 및 책임시수 감면</button>
             <button onclick="sendQuickQuery('부교수에서 정교수 승진 요건과 소요연수가 궁금해요')" class="bg-white border border-slate-300 text-slate-700 text-xs px-3 py-1.5 rounded-full whitespace-nowrap hover:bg-slate-50 transition">🏆 승진·재임용 요건</button>
             <button onclick="sendQuickQuery('국외출장 신청 기한과 귀국 후 보고 규정은요?')" class="bg-white border border-slate-300 text-slate-700 text-xs px-3 py-1.5 rounded-full whitespace-nowrap hover:bg-slate-50 transition">✈️ 국외출장 및 여비</button>
             <button onclick="sendQuickQuery('법인(클린)카드 사용 제한 업종과 증빙 기준')" class="bg-white border border-slate-300 text-slate-700 text-xs px-3 py-1.5 rounded-full whitespace-nowrap hover:bg-slate-50 transition">💳 클린카드 및 예산집행</button>
+            <button onclick="sendQuickQuery('원격수업 동영상 콘텐츠 제작 시간 기준')" class="bg-white border border-slate-300 text-slate-700 text-xs px-3 py-1.5 rounded-full whitespace-nowrap hover:bg-slate-50 transition">💻 원격수업 운영 기준</button>
         </div>
 
         <!-- Input Area -->
@@ -58,42 +59,35 @@
         제주대학교 해양과학대학 · 교무행정 통합 안내 시스템
     </footer>
 
-    <!-- JavaScript Engine -->
+    <!-- JavaScript Intelligence Engine -->
     <script>
         const knowledgeBase = [
             {
-                id: "exemption",
-                keywords: ["학장", "보직", "감면", "3시수", "처장", "원장", "면제"],
-                answer: "본부 실·처·원장 및 단과대학장 등 보직 수행 교원의 경우 공무 수행을 위하여 기피시간(책임시수 감면 또는 조정) 처리를 적용받을 수 있습니다.<br><br><b>[근거 조항]</b> 제주대학교 수업시간표 편성 및 수업 운영에 관한 지침 제4조 제5항"
+                keywords: ["학장", "보직", "감면", "처장", "원장", "면제", "기피시간", "학과장", "부처장", "부단장"],
+                answer: "본부 실·처·원장 및 단과대학장 등 보직 수행 교원의 경우 공무 수행을 위하여 책임시수가 감면(조정)됩니다.<br><br><b>[주요 감면 기준]</b><br>- 학장, 처장, 기획실장, 산학협력단장 등: <b>주당 3시간</b><br>- 학과장(전공주임), 부처장, 부단장, 대학원 부원장 등: <b>주당 6시간</b><br><br><b>[근거 조항]</b> 제주대학교 수업시간표 편성 및 수업 운영에 관한 지침 제4조 제5항"
             },
             {
-                id: "teaching_load",
-                keywords: ["책임시수", "강의", "대면", "시간", "시수", "주당", "분산", "9시간", "18시간"],
+                keywords: ["책임시수", "강의", "대면", "시간", "시수", "주당", "분산", "9시간", "18시간", "학부 4시간"],
                 answer: "전임교원의 주당 강의 책임시간은 9시간(연간 18시간)이며, 매 학기 학부 4시간 이상을 포함하여 학기당 5시간 이상 담당하여야 합니다. 이 중 2시간 이상은 전공과목으로 대면 강의를 진행하여야 하며, 주 3일 이상 분산하여 강의를 담당하도록 편성해야 합니다.<br><br><b>[근거 조항]</b> 제주대학교 수업시간표 편성 및 수업 운영에 관한 지침 제4조 제6항 및 제8항"
             },
             {
-                id: "promotion",
-                keywords: ["승진", "재임용", "소요연수", "부교수", "정교수", "조교수", "업적평가"],
+                keywords: ["승진", "재임용", "소요연수", "부교수", "정교수", "조교수", "업적평가", "환산율"],
                 answer: "전임교원 승진 및 재임용을 위한 소요연수는 조교수 4년, 부교수 6년이며, 대학인사규정 및 해양과학대학 교수업적평가 세부지침에 따라 교육·연구·봉사 영역별 기준 점수(환산율 반영)를 충족해야 합니다.<br><br><b>[근거 조항]</b> 제주대학교 교원인사규정 및 해양과학대학 교수업적평가 세부지침"
             },
             {
-                id: "business_trip",
                 keywords: ["출장", "국외", "여비", "보고", "마일리지", "항공", "국내출장"],
                 answer: "국내·외 출장은 사전에 출장신청서 및 관련 증빙(회의 공문 등)을 제출하여 승인을 받아야 합니다. 국외출장의 경우 공적 항공마일리지를 우선 사용하여야 하며, 귀국 후 2주일 이내(국외출장보고서는 귀국 후 30일 이내) 관련 증빙과 함께 여비를 정산하여야 합니다.<br><br><b>[근거 조항]</b> 공무원 여비 규정 및 2026학년도 대학회계 예산집행 지침(여비·국외여비)"
             },
             {
-                id: "card_budget",
                 keywords: ["카드", "클린카드", "예산", "업무추진비", "법인카드", "집행", "50만"],
                 answer: "정부구매(클린카드)는 사적 용도로 사용할 수 없으며, 유흥업종, 레저업종, 사행업종, 기타업종(성인용품점 등) 및 법정공휴일·주말·심야시간대(22시 이후) 사용이 원칙적으로 제한됩니다. 건당 50만원 이상 집행 시 주된 상대방의 소속 및 성명을 증빙서류에 기재해야 합니다.<br><br><b>[근거 조항]</b> 2026학년도 대학회계 예산집행 기본지침 III. 비목별 지침(업무추진비)"
             },
             {
-                id: "remote_class",
-                keywords: ["원격", "동영상", "콘텐츠", "온라인", "LMS", "블렌디드"],
+                keywords: ["원격", "동영상", "콘텐츠", "온라인", "LMS", "블렌디드", "플립드"],
                 answer: "학내원격 강좌 및 블렌디드러닝 운영 시 동영상 콘텐츠는 1차시당 재생 시간이 25분±15분(75분제 적용 시 45분±15분)으로 제작되어야 하며, JNUclass LMS에 사전 탑재해야 합니다. 단순 링크 등록은 불가하며 질의응답 및 토론이 포함되어 총 학습시간이 50분(또는 75분)을 충족해야 합니다.<br><br><b>[근거 조항]</b> 제주대학교 원격수업 운영 지침 제6조 및 제9조"
             },
             {
-                id: "grades",
-                keywords: ["성적", "평가", "상대평가", "절대평가", "재이수", "경고", "S/U"],
+                keywords: ["성적", "평가", "상대평가", "절대평가", "재이수", "경고", "S/U", "학점"],
                 answer: "교과목 성적평가는 상대평가 I·II 및 절대평가로 구분되며, 기말시험 시작일 기준 수강인원 산출구간별 소수점은 버림 처리합니다. 성적 이의신청은 학기말 시험 종료 후 정해진 기간 내에 신청할 수 있으며, 평점평균 1.3 미만인 경우 성적경고가 부여됩니다.<br><br><b>[근거 조항]</b> 제주대학교 성적업무 처리 지침 제2조~제6조 및 제13조"
             }
         ];
@@ -136,7 +130,7 @@
             appendMessage('USER', query);
             input.value = '';
 
-            // 지능형 키워드 매칭 로직 (가장 연관성이 높은 항목 탐색)
+            // 지능형 가중치 매칭 엔진
             setTimeout(() => {
                 let bestMatch = null;
                 let maxScore = 0;
@@ -145,7 +139,9 @@
                     let score = 0;
                     item.keywords.forEach(kw => {
                         if (query.includes(kw)) {
-                            score += kw.length; // 일치하는 키워드가 길수록 가중치 부여
+                            // 감면, 학장 등 핵심 행정 키워드에 높은 우선순위 가중치 부여
+                            let weight = (kw === "감면" || kw === "학장" || kw === "보직" || kw === "학과장") ? 15 : kw.length;
+                            score += weight;
                         }
                     });
                     if (score > maxScore) {
@@ -158,10 +154,10 @@
                 if (bestMatch && maxScore > 0) {
                     responseText = bestMatch.answer;
                 } else {
-                    responseText = "문의하신 내용과 관련된 해양과학대학 규정 및 학사행정 데이터베이스를 확인하였습니다. 보다 구체적인 조문 확인이 필요하신 경우 하단의 추천 검색어(책임시수, 승진, 국외출장, 클린카드 등)를 참고하여 질문해 주시기 바랍니다.";
+                    responseText = "문의하신 내용과 관련된 해양과학대학 규정 및 학사행정 데이터베이스를 확인하였습니다. 보다 구체적인 조문 확인이 필요하신 경우 하단의 추천 검색어(책임시수, 보직자 감면, 승진, 국외출장 등)를 참고하여 질문해 주시기 바랍니다.";
                 }
                 appendMessage('AI', responseText);
-            }, 400);
+            }, 300);
         }
     </script>
 </body>
